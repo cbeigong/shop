@@ -6,7 +6,7 @@
  * Time: 下午 12:34
  */
 
-class IndexController extends Controller{
+class IndexController extends BaseController{
     public function indexAction() {
 //        echo "admin  index ";
         include CUR_VIEW_PATH . "index.html";

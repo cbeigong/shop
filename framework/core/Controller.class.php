@@ -1,5 +1,4 @@
 <?php
-
 class Controller {
 	// 定义跳转方法 
 	public function jump($url, $message, $wait=3) {
@@ -8,6 +7,8 @@ class Controller {
 			header("Location:$url");
 		} else {
 			include CUR_VIEW_PATH . "message.html";
+//			header("Location:$url");
+//			header("refresh:$wait;url=$url");
 		}
 		// 要强制退出
 		exit();

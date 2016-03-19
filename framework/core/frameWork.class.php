@@ -41,14 +41,17 @@ class frameWork{
         define("ACTION", isset($_REQUEST["a"]) ? $_REQUEST["a"] : "index");
         define("CUR_CONTROLLER_PATH", CONTROLLER_PATH . PLATFORM . DS);
         define("CUR_VIEW_PATH", VIEW_PATH . PLATFORM . DS);
+        define("UP_LOAD_PATH", PUBLIC_PATH . 'uploads' . DS);
 
         // 载入基础控制器 
         require CORE_PATH . "Controller.class.php";
+        require CORE_PATH . "BaseController.class.php";
         require DB_PATH . "Mysql.class.php";
         // 有定义基础的类，或者基础函数 要记得加载进来，不然会报错
         require CORE_PATH . "Model.class.php";
 
         $GLOBALS["config"] = include  CONFIG_PATH . "config.php";
+        session_start();
     }
 
     // 定义路由方法
@@ -89,6 +92,7 @@ class frameWork{
     //  加载方法 加载类的方法
     public static function load($classname) {
         if(substr($classname, -10) == "Controller") {
+//            var_dump(CUR_CONTROLLER_PATH);
 //            var_dump($classname);
             require CUR_CONTROLLER_PATH . "{$classname}.class.php";
         } elseif(substr($classname, -5) == "Model") {
